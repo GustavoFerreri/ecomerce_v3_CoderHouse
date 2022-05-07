@@ -12,7 +12,7 @@ const app = require('./src/app')
 // const {} = require ('./src/controllers/task.controller')
 
 //  Base de datos
-// const { createConnection } = require('./src/database')
+const { createConnection } = require('./src/database')
 
 // Socket.Io
 const http = require ('http');
