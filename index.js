@@ -9,7 +9,7 @@ const port = process.env.PORT || 8000;
 const app = require('./src/app')
 
 // Tareas
-// const {} = require ('./src/controllers/task.controller')
+const { getAll, createProduct } = require ('./src/controllers/task.controller')
 
 //  Base de datos
 const { createConnection } = require('./src/services/database')
@@ -24,8 +24,13 @@ const io = new Server(server);
 // Configuramos las entrada y salidas del servidor
 io.on("connection", (socket)=>{
     console.warn('User Connected!')
-    socket.on('allProduct', ()=>{})
-    socket.on('createProduct', ()=>{})
+    socket.on('allProduct', ()=>{
+        io.sockets.emit('allProduct');
+    })
+    socket.on('createProduct', (product)=>{
+        createProduct(product);
+        io.sockets.emit('allProduct');
+    })
 })
 
 // Hacemos que el server corra, y escuche el puerto antes configurado
