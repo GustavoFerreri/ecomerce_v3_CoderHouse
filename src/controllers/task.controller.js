@@ -3,7 +3,8 @@ const { v4 } = require ('uuid')
 
 const getAll = (req, res) => {
     const products = getConnection().data.product;
-    res.render('product', {products: products})
+    const chat = getConnection().data.chat;
+    res.render('product', {products: products, msgClient: chat})
 }
 
 const createProduct = async (req, res) => {
@@ -16,6 +17,18 @@ const createProduct = async (req, res) => {
         description: req.description
     }
     getConnection().data.product.push(newProduct)
+    await getConnection().write()
+    console.log(req.body)
+}
+
+const createChat = async (req, res) => {
+    console.log(req);
+    const newChat = {
+        mail: req.mail,
+        time: new Date().toDateString(),
+        msgClient: req.msgClient
+    }
+    getConnection().data.chat.push(newChat)
     await getConnection().write()
     console.log(req.body)
 }
@@ -52,6 +65,7 @@ const deleteProduct = async (req, res) => {
 module.exports = {
     getAll,
     createProduct,
+    createChat,
     updateProduct,
     deleteProduct,
     getById

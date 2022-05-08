@@ -9,12 +9,11 @@ const port = process.env.PORT || 8000;
 const app = require('./src/app')
 
 // Tareas
-const { getAll, createProduct } = require ('./src/controllers/task.controller')
+const { getAll, createProduct, createChat } = require ('./src/controllers/task.controller')
 
 //  Base de datos
 const { createConnection } = require('./src/services/database')
 createConnection()
-
 // Socket.Io
 const http = require ('http');
 const server = http.createServer(app);
@@ -29,6 +28,10 @@ io.on("connection", (socket)=>{
     })
     socket.on('createProduct', (product)=>{
         createProduct(product);
+        io.sockets.emit('allProduct');
+    })
+    socket.on('chatClient', (data)=>{
+        createChat(data);
         io.sockets.emit('allProduct');
     })
 })
