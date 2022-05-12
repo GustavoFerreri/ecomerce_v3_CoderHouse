@@ -1,4 +1,13 @@
 {
-  "product": [],
-  "chat": []
+  "product": [
+    {
+      "id": "bf66bd01-df9e-4bbf-acdf-435b4a358bac",
+      "title": "Spiderman",
+      "price": "115",
+      "img": "https://brainstomping.files.wordpress.com/2017/08/spider-man-homecoming-amazing-fantasy-exclusive-poster-nerdist.jpg?resize=640%2C948",
+      "description": "Spider-Man: Homecoming (Spider-Man: De Regreso a Casa en América Hispana) es una película de superhéroes basada en el superhéroe de Marvel Comics del mismo nombre. Además de ser un reinicio de la franquicia del Hombre Araña, se trata de una secuela de Captain America: Civil War, la décimo sexta entrega del Universo Cinematográfico de Marvel y de la Saga del Infinito, y la cuarta entrega de la Fase Tres. Se estrenó el 7 de julio de 2017 en Estados Unidos."
+    }
+  ],
+  "chat": [],
+  "cart": []
 }

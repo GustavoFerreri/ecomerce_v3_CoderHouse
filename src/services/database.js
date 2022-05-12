@@ -14,12 +14,23 @@ let db;
 const createConnection = async () =>{
     db = new Low(new JSONFile(file))
     await db.read()
-    db.data ||= { product: [], chat: [] }
+    db.data ||= { product: [], chat: [], cart: []}
     await db.write();
 };
 
 const getConnection = () => db;
 
+// class dataBase {
+//     constructor(name) {
+//         this.name = name;
+//         this.db = new Low( new JSONFile(path.join(filePath, this.name + '.json')))
+//     }
+//     createConnection = async () =>{
+//         await this.db.read()
+//         this.db.data ||= { product: [], chat: [] }
+//         await this.db.write();
+//     };
+//     getConnection = () => this.db;
+// }
 
-
-module.exports = { getConnection, createConnection}
+module.exports = { createConnection, getConnection }

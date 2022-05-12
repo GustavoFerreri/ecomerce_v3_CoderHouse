@@ -7,6 +7,12 @@ const getAll = (req, res) => {
     res.render('product', {products: products, msgClient: chat})
 }
 
+const allInOne = (req, res) => {
+    const products = getConnection().data.product;
+    const chat = getConnection().data.chat;
+    res.render('allProducts', {products: products, msgClient: chat})
+}
+
 const createProduct = async (req, res) => {
     console.log(req)
     const newProduct ={
@@ -63,6 +69,7 @@ const deleteProduct = async (req, res) => {
 };
 
 module.exports = {
+    allInOne,
     getAll,
     createProduct,
     createChat,
