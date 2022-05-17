@@ -1,19 +1,15 @@
 <div class="container">
     <div class="row">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Ingrese el nombre de la pelicula" aria-label="Ingrese el nombre de la pelicula" aria-describedby="basic-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             {{#each products}}
-                <div class="card" style="max-width:250px">
-                    <div class="card-header text-center">
-                        <img class="img-thumbnail" style="max-width:200px;" src="{{img}}" alt="{{title}}"/>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{title}}</h5>
-                        <p class="card-text" style="font-size: 0.75rem">{{description}}</p>
-                        <p class="card-text"><strong>${{price}}</strong></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-                {{/each}}
-            </div>
+                {{>itemProduct this}}
+            {{/each}}
         </div>
+    </div>
 </div>
