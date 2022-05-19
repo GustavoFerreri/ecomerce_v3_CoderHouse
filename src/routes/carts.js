@@ -5,9 +5,6 @@ const { addCart, showCart, deleteItemCart} = require ('../controllers/task.contr
 
 router.get('/', showCart);
 
-// habilitado para usr y adm
-// router.get('/:id?', allInOne) 
-
 
 // habilitados solo para adm
 router.post('/', addCart)
