@@ -13,17 +13,8 @@ const allInOne = (req, res) => {
     res.render('allProducts', {products: products, msgClient: chat})
 }
 
-const addCart = async (req, res) => {
-    const products = getConnection().data.product;
-    const findProduct = products.filter(product =>product.id === req.body.id)
-    const addProduct = {
-        id: findProduct[0].id,
-        title: findProduct[0].title,
-        price: findProduct[0].price
-    }
-    getConnection().data.cart.push(addProduct)
-    await getConnection().write()
-}
+
+
 const newProduct =(req, res) => {
     console.log('aca')
 }
@@ -83,8 +74,39 @@ const deleteProduct = async (req, res) => {
     return res.json(newProduct);
 };
 
+const showCart = (req, res) => {
+    const cart = getConnection().data.cart;
+    res.render('showCart', {carts: cart})
+}
+
+const addCart = async (req, res) => {
+    const products = getConnection().data.product;
+    const findProduct = products.filter(product =>product.id === req.body.id)
+    const addProduct = {
+        id: findProduct[0].id,
+        title: findProduct[0].title,
+        price: findProduct[0].price
+    }
+    getConnection().data.cart.push(addProduct)
+    await getConnection().write()
+}
+
+const deleteItemCart= async (req, res) => {
+    const db = getConnection();
+    const newProduct = db.data.cart.filter(prod =>prod.id !== req.body.id);
+    db.data.cart = newProduct;
+    await db.write();
+    const cart = await db.data.cart;
+    console.log(cart)
+    res.render('showCart', {carts: cart})
+};
+
+
+
 module.exports = {
     addCart,
+    showCart,
+    deleteItemCart,
     allInOne,
     newProduct,
     getAll,
