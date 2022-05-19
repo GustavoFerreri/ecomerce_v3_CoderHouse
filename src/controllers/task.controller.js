@@ -7,18 +7,38 @@ const getAll = (req, res) => {
     res.render('product', {products: products, msgClient: chat})
 }
 
+const allInOne = (req, res) => {
+    const products = getConnection().data.product;
+    const chat = getConnection().data.chat;
+    res.render('allProducts', {products: products, msgClient: chat})
+}
+
+const addCart = async (req, res) => {
+    const products = getConnection().data.product;
+    const findProduct = products.filter(product =>product.id === req.body.id)
+    const addProduct = {
+        id: findProduct[0].id,
+        title: findProduct[0].title,
+        price: findProduct[0].price
+    }
+    getConnection().data.cart.push(addProduct)
+    await getConnection().write()
+}
+const newProduct =(req, res) => {
+    console.log('aca')
+}
+
 const createProduct = async (req, res) => {
-    console.log(req)
     const newProduct ={
         id: v4(),
-        title: req.title,
-        price: req.price,
-        img: req.img,
-        description: req.description
+        title: req.body.title,
+        price: req.body.price,
+        img: req.body.img,
+        description: req.body.description
     }
     getConnection().data.product.push(newProduct)
     await getConnection().write()
-    console.log(req.body)
+    res.render('newProduct')
 }
 
 const createChat = async (req, res) => {
@@ -35,8 +55,9 @@ const createChat = async (req, res) => {
 
 const getById = (req, res) =>{
     const product = getConnection().data.product;
-    console.log(product.filter(prod => prod.id === req.params.id))
-    res.render('product', {products: product.filter(prod => prod.id === req.params.id)})
+    JSON.parse(req.params.id).id == '' ? 
+        res.render('allProducts', {products: product}) : 
+        res.render('allProducts', {products: product.filter(prod => prod.title=== JSON.parse(req.params.id).id)})
 } 
 
 const updateProduct = async (req, res) => {
@@ -63,6 +84,9 @@ const deleteProduct = async (req, res) => {
 };
 
 module.exports = {
+    addCart,
+    allInOne,
+    newProduct,
     getAll,
     createProduct,
     createChat,

@@ -17,7 +17,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 // Routes
-app.use('/api', require('../src/routes/tasks.routes'));
+app.use('/products', require('./routes/products'));
+app.use('/carts', require('./routes/carts'));
+app.use('/productCreate', (req, res) =>{
+    res.render('newProduct')
+})
+
 
 app.use(express.static(path.join(__dirname, 'src')));
 
