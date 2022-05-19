@@ -1,13 +1,10 @@
 const { Router } = require ('express');
 const router = Router();
-const { addCart} = require ('../controllers/task.controller')
+const { addCart, showCart, deleteItemCart} = require ('../controllers/task.controller')
 
-// router.get('/', getAll)
-router.get('/', (req, res)=>{
-    res.render('productWeb')
-})
 
-// router api/productos
+router.get('/', showCart);
+
 // habilitado para usr y adm
 // router.get('/:id?', allInOne) 
 
@@ -15,7 +12,7 @@ router.get('/', (req, res)=>{
 // habilitados solo para adm
 router.post('/', addCart)
 // router.put('/:id?', updateProduct)
-// router.delete('/:id?', deleteProduct)
+router.delete('/:id?', deleteItemCart)
 
 // router api/carritos
 

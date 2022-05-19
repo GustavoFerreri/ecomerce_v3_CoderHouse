@@ -23,21 +23,5 @@
     }
   ],
   "chat": [],
-  "cart": [
-    {
-      "id": "8df43aa5-70d3-45e3-9665-9fe209cb1d8b",
-      "title": "Spiderman 2",
-      "price": "135"
-    },
-    {
-      "id": "bf66bd01-df9e-4bbf-acdf-435b4a358bac",
-      "title": "Spiderman",
-      "price": "115"
-    },
-    {
-      "id": "dcc08bf0-e0f6-47ee-95e4-bb76a500654a",
-      "title": "Deadpol",
-      "price": "145"
-    }
-  ]
+  "cart": []
 }
